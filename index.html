@@ -137,16 +137,16 @@
             </ul>
           </div>
         <!--INFO COLECCION SELECCIONADA - PAGINA 1-->
-					<div class="row">
-						<div id="info_collection-1" class="col-lg-7 col-md-7 col-sm-12 col-xs-12" hidden="true">
-							<h3 class="title">Colección seleccionada</h3>
-							<div id="description_collection-1">
-								<h4 class="selected_collection"></h4>
-								<ul id='descr_droppable-1' class='collections'>
-								</ul>
-							</div>
-						</div>
-					</div>
+		  <div class="row">
+			<div id="info_collection-1" class="col-lg-7 col-md-7 col-sm-12 col-xs-12" hidden="true">
+			  <h3 class="title">Colección seleccionada</h3>
+			  <div id="description_collection-1">
+				<h4 class="selected_collection"></h4>
+				<ul id='descr_droppable-1' class='collections'>
+				</ul>
+			  </div>
+			</div>
+		  </div>
         </div><!--container-->
       </div><!--first page-->
 
@@ -164,22 +164,26 @@
             </div>
             <div id="collections-2" class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
               <h3 class="title">Colecciones</h3>
-              <div id="collection-2">
-                <span class="new_collection_form">Nueva colección: <input id="nombre-2" type="text" name="" value=""></input>
-                <input id="crear-2" type="submit" value="Crear"></input></span>
-								<ul id="col-list-2" class="collections">
-								</ul>
+              <div id="collection-2">  
+			    <span class="new_collection_form">
+				  Nueva colección: <input id="nombre-2" type="text" name="" value=""></input>
+                  <input id="crear-2" type="submit" value="Crear"></input>
+			    </span>
+				<ul id="col-list-2" class="collections">
+				</ul>
               </div>
             </div>
         <!--INFO COLECCION SELECCIONADA - PAGINA 2-->
             <div id="info-2" class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
               <h3 class="title">Colección seleccionada</h3>
               <div id="description-2">
-								<div class="selected_collection"><h4></h4></div>
-								<ul id='descr_droppable-2' class='collections'>
-									<span class="nota">Selecciona una colección y arrastra hasta aquí los parkings que desees añadir.</span>
-								</ul>
-							</div>
+				<div class="selected_collection">
+					<h4></h4>
+				</div>
+				<ul id='descr_droppable-2' class='collections'>
+					<span class="nota">Selecciona una colección y arrastra hasta aquí los parkings que desees añadir.</span>
+				</ul>
+			  </div>
             </div>
           </div>
         </div><!--container-->
@@ -280,16 +284,18 @@
           <div class="row">
             <div id="form-4" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="save_load_form">
+				<form>
                 Introduzca su token:
-                <input id="token-4" type="text" value="" size='60'></input><br>
+                <input id="token-4" type="text"  value="" size='60' autofocus required></input>
                 Introduzca su usuario de GitHub:
-                <input id="git-user-4" type="text" value="" size='49'></input><br>
+                <input id="git-user-4" type="text" value="" size='49' autofocus required></input><br>
                 Introduzca su repositorio:
-                <input id="repo-4" type="text" value="" size='55'></input><br>
+                <input id="repo-4" type="text" value="" size='55' placeholder="Sólo nombre, no escriba la URL" autofocus required></input><br>
                 Introduzca el nombre del fichero:
-                <input id="file-4" type="text" value="" size='48'></input><br>
+                <input id="file-4" type="text" value="" size='48' placeholder="Nombre de archivo sin extension .json" autofocus required></input><br>
                 <input id="guardar" type="submit" value="GUARDAR"></input>
                 <input id="cargar" type="submit" value="CARGAR"></input>
+				</form>
               </div>
             </div>
             <div id="result-4" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
