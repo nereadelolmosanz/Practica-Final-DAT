@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<!--
+	Telephasic by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Aparcamientos Madrid</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- BOOTSTRAP STYLES-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- LEAFLET STYLES-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <!-- CUSTOM STYLES -->
+		<link rel="stylesheet" href="css/main.css" />
+    <!-- JQUERY SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- LEAFLET JS -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- GOOGLE PLUS -->
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <!-- GITHUB LIB -->
+    <script src="js/github.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="js/main.js"></script>
+
+	</head>
+	<body class="homepage">
+		<div id="page-wrapper">
+      <!-- Banner -->
+      <img src="images/banner2.jpg" class="banner"></img>
+			<!-- Header -->
+			<div id="header-wrapper">
+				<!-- Hero -->
+				<section id="hero" class="container">
+					<header>
+						<h2>Aparcamientos para residentes en Madrid<h2>
+					</header>
+					<p>La mejor forma de gestionar tus aparcamientos favoritos</p>
+					<ul class="actions">
+						<li id="getJSON"><a href="#page-1" class="button">Cargar aparcamientos</a></li>
+					</ul>
+					<ul id="data" class="actions" hidden="true">
+						<li id="save_data"><a href="#" class="button">Guardar datos</a></li>
+            <li id="load_data"><a href="#" class="button">Cargar datos</a></li>
+					</ul>
+				</section>
+        <div id="header" class="container">
+				  <!-- Nav -->
+					<nav id="nav">
+						<ul id="#pages">
+							<li id="tab-1"><a href="#page-1">Aparcamientos</a></li>
+							<li id="tab-2"><a href="#page-2">Colecciones</a></li>
+							<li id="tab-3"><a href="#page-3">Instalaciones</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div> <!--/header-wrapper-->
+
+
+      <!--PAGINA PRINCIPAL-->
+      <div id="page-1" class="wrapper" hidden="true">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <div id="map-1" class="map">
+              </div>
+            </div>
+            <div id="list-1" class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <h3 class="title">Aparcamientos <i id="disable-1" class="fa fa-wheelchair"></i></h3>
+              <div id="parkings-1"></div>
+            </div>
+          </div>
+
+        <!--INFO PARKING SELECCIONADO - PAGINA 1-->
+          <div id="info-parking-1" class="row">
+            <div id="info-1" class="col-lg-4 col-md-4 col-sm-12 col-xs-12" hidden="true">
+              <h3 class="title">Información</h3>
+              <div id="description-1"></div>
+            </div>
+            <div id="photos-1" class="col-lg-8 col-md-8 col-sm-12 col-xs-12" hidden="true">
+              <h3 class="title">Galería de fotos</h3>
+              <!--CAROUSEL-->
+              <div id="myCarousel-1" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img id="img0" src="images/error_loading.jpg">
+                  </div>
+                  <div class="item">
+                    <img id="img1" src="images/error_loading.jpg">
+                  </div>
+                  <div class="item">
+                    <img id="img2" src="images/error_loading.jpg">
+                  </div>
+                  <div class="item">
+                    <img id="img3" src="images/error_loading.jpg">
+                  </div>
+                  <div class="item">
+                    <img id="img4" src="images/error_loading.jpg">
+                  </div>
+                  <div class="item">
+                    <img id="img5" src="images/error_loading.jpg">
+                  </div>
+                </div>
+              </div>
+              <!--/CAROUSEL-->
+            </div>
+          </div><!--/row-->
+          <div id="switcher-1" class="row hidden-xs" hidden="true">
+            <ul class="hide-bullets">
+              <li class="col-lg-2 col-md-2 col-sm-2">
+                <a class="thumbnail"><img id="selector-0" src="images/error_loading.jpg"></a>
+              </li>
+              <li class="col-lg-2 col-md-2 col-sm-2">
+                <a class="thumbnail"><img id="selector-1" src="images/error_loading.jpg"></a>
+              </li>
+              <li class="col-lg-2 col-md-2 col-sm-2">
+                <a class="thumbnail"><img id="selector-2" src="images/error_loading.jpg"></a>
+              </li>
+              <li class="col-lg-2 col-md-2 col-sm-2">
+                <a class="thumbnail"><img id="selector-3" src="images/error_loading.jpg"></a>
+              </li>
+              <li class="col-lg-2 col-md-2 col-sm-2">
+                <a class="thumbnail"><img id="selector-4" src="images/error_loading.jpg"></a>
+              </li>
+              <li class="col-lg-2 col-md-2 col-sm-2">
+                <a class="thumbnail"><img id="selector-5" src="images/error_loading.jpg"></a>
+              </li>
+            </ul>
+          </div>
+        <!--INFO COLECCION SELECCIONADA - PAGINA 1-->
+					<div class="row">
+						<div id="info_collection-1" class="col-lg-7 col-md-7 col-sm-12 col-xs-12" hidden="true">
+							<h3 class="title">Colección seleccionada</h3>
+							<div id="description_collection-1">
+								<h4 class="selected_collection"></h4>
+								<ul id='descr_droppable-1' class='collections'>
+								</ul>
+							</div>
+						</div>
+					</div>
+        </div><!--container-->
+      </div><!--first page-->
+
+      <!--SEGUNDA PAGINA-->
+      <div id="page-2" class="wrapper" hidden="true">
+        <div class="container">
+          <div class="row">
+            <div id="list-2" class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+              <h3 class="title">Aparcamientos</h3>
+              <div id="parkings-2"></div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <div id="map-2">
+              </div>
+            </div>
+            <div id="collections-2" class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <h3 class="title">Colecciones</h3>
+              <div id="collection-2">
+                <span class="new_collection_form">Nueva colección: <input id="nombre-2" type="text" name="" value=""></input>
+                <input id="crear-2" type="submit" value="Crear"></input></span>
+								<ul id="col-list-2" class="collections">
+								</ul>
+              </div>
+            </div>
+        <!--INFO COLECCION SELECCIONADA - PAGINA 2-->
+            <div id="info-2" class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <h3 class="title">Colección seleccionada</h3>
+              <div id="description-2">
+								<div class="selected_collection"><h4></h4></div>
+								<ul id='descr_droppable-2' class='collections'>
+									<span class="nota">Selecciona una colección y arrastra hasta aquí los parkings que desees añadir.</span>
+								</ul>
+							</div>
+            </div>
+          </div>
+        </div><!--container-->
+      </div><!--second page-->
+
+
+
+      <!--TERCERA PAGINA-->
+      <div id="page-3" class="wrapper" hidden="true">
+        <div class="container">
+          <div id="no-parking" class="row" hidden="true">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <p class="nota"> Aún no ha seleccionado ninguna instalación</p>
+            </div>
+          </div>
+          <!--INFO PARKING SELECCIONADO - PAGINA 3-->
+          <div id="info-parking-3" hidden="true">
+            <div class="row">
+              <div id="info-3" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h3 class="title">Información</h3>
+                <div id="description-3"></div>
+                <h3 class="title">Usuarios</h3>
+                <div id="droppable-users-3" class="selected-users">
+                  <span class="nota">Arrastra hasta aquí los usuarios que desees añadir.</span>
+                </div>
+              </div>
+              <div id="photos-3" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h3 class="title">Galería de fotos</h3>
+                <!--CAROUSEL-->
+                <div id="myCarousel-3" class="carousel slide">
+                </div></br>
+                <div id="switcher-3" class="row hidden-xs">
+                  <div class="row">
+                    <ul id="#row-1" class="hide-bullets">
+                      <li class="col-lg-4 col-md-4 col-sm-4">
+                        <a class="thumbnail"></a>
+                      </li>
+                      <li class="col-lg-4 col-md-4 col-sm-4">
+                        <a class="thumbnail"></a>
+                      </li>
+                      <li class="col-lg-4 col-md-4 col-sm-4">
+                        <a class="thumbnail"></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="row">
+                    <ul id="#row-2" class="hide-bullets">
+                      <li class="col-lg-4 col-md-4 col-sm-4">
+                        <a class="thumbnail"></a>
+                      </li>
+                      <li class="col-lg-4 col-md-4 col-sm-4">
+                        <a class="thumbnail"></a>
+                      </li>
+                      <li class="col-lg-4 col-md-4 col-sm-4">
+                        <a class="thumbnail"></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <!--/CAROUSEL-->
+              </div> <!-- /photos-3-->
+            </div>
+            <div class="row">
+              <div id="available-users-3" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 class="title">Usuarios disponibles</h3>
+                <div id="users-list-3">
+                  <div id="start_websocket" class="button" hidden="false">
+                    <br>Cargar usuarios&nbsp;<img src="images/users.png" width="20px" height="20px"></img>
+                  </div>
+                  <div id="row1" class="row">
+                    <div id="user-0" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-1" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-2" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-3" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-4" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-5" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                  </div>
+                  <div id="row2" class="row">
+                    <div id="user-6" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-7" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-8" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-9" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-10" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                    <div id="user-11" class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                  </div>
+                </div>
+              </div>
+            </div><!--/row-->
+          </div> <!-- id=info-parking-3 -->
+        </div><!--container-->
+      </div><!--third page-->
+
+
+
+      <!--CUARTA PAGINA-->
+      <div id="page-4" class="wrapper" hidden="true">
+        <div class="container">
+          <div class="row">
+            <div id="form-4" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="save_load_form">
+                Introduzca su token:
+                <input id="token-4" type="text" value="" size='60'></input><br>
+                Introduzca su usuario de GitHub:
+                <input id="git-user-4" type="text" value="" size='49'></input><br>
+                Introduzca su repositorio:
+                <input id="repo-4" type="text" value="" size='55'></input><br>
+                Introduzca el nombre del fichero:
+                <input id="file-4" type="text" value="" size='48'></input><br>
+                <input id="guardar" type="submit" value="GUARDAR"></input>
+                <input id="cargar" type="submit" value="CARGAR"></input>
+              </div>
+            </div>
+            <div id="result-4" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            </div>
+          </div>
+        </div><!--container-->
+      </div><!--fourth page-->
+
+
+
+
+			<!-- Footer -->
+			<div id="footer-wrapper">
+				<div id="copyright" class="container">
+					<ul class="menu">
+						<li><a href="http://datos.madrid.es/egob/catalogo/202584-0-aparcamientos-residentes.json">Esta aplicación utiliza datos del portal de datos abiertos de la ciudad de Madrid. </a></li>
+						<li><a href="http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=e84276ac109d3410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default"> Descripción.</a></li>
+					</ul>
+					<ul class="menu">
+						<li>&copy; Nerea Del Olmo Sanz</li>
+            <li><a href="http://cursosweb.github.io/">Desarrollo de Applicaciones Telemáticas, 2017</a></li>
+					</ul>
+
+				</div>
+			</div>
+
+		</div><!--/page-wrapper-->
+	</body>
+</html>
