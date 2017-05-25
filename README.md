@@ -13,3 +13,5 @@ OPCIONALES:
 - borrar usuarios de una instalación.
 - cargar datos de un fichero en las variables correspondientes para que se puedan seguir gestionando en el resto de la página.
 - nuevas etiquetas semanticas de HTML5.
+- nuevos formularios de HTML5.
+- footer con enlace y descripción al fichero json original del Ayto de Madrid.
