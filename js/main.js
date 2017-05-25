@@ -100,7 +100,7 @@ $(document).ready(function() {
         //añadimos los marcadores de la coleccion
         if (actual_collection_id != ""){
           var collection_name = $("#"+actual_collection_id).html();
-          show_collection_page1(data);
+          show_collection_page1(data,collection_name);
           var markers = collections_markers_map1[collection_name];
           show_markers(markers,map1);
         } else {
@@ -139,15 +139,16 @@ $(document).ready(function() {
     }
   }
 
-  function show_collection_page1(data){
+  function show_collection_page1(data,name){
     $('#info_collection-1').show();
     $("#description_collection-1 > h4").html(name);
     $('#descr_droppable-1').html("");
 
     var parkings = collections[name];
+    console.log(parkings);
     for(var i=0; i< parkings.length; i++){
       //cambiamos id para la pagina principal
-      parking = parkings[i].split('page-2')[0] + 'page-1' + parkings[i].split('page-2')[1].split("<i")[0] + "</li>";
+      var parking = parkings[i].split('page-2')[0] + 'page-1' + parkings[i].split('page-2')[1].split("<i")[0] + "</li>";
       $('#descr_droppable-1').append(parking);
       parking_id = parking.split('"')[1];
       $("#"+parking_id).click(function(){
@@ -381,7 +382,6 @@ $(document).ready(function() {
           $("#description-2 > div > h4").html(new_collection_name + icons);
           $("#"+actual_collection_id).html(new_collection_name);
           modify_key_names(name,new_collection_name);
-          //$('#modify_collection').remove();
         }
         $('#modify_collection').remove();
       })
@@ -426,6 +426,7 @@ $(document).ready(function() {
         $(this)[0].id = "selector3-"+i.toString();
       })
       $("#droppable-users-3").height($("#switcher-3").height()-160);
+      
       //DROP
       $('#droppable-users-3').droppable({
         over: function(event, ui){
@@ -526,24 +527,40 @@ $(document).ready(function() {
         users_info[id].name = resp.displayName;
         users_info[id].image = resp.image.url;
 
-        var html = "<div class='user-box'>";
-        html += "<p>"+users_info[id].name+"</p>";
-        html += "<img src='"+users_info[id].image+"'></img>";
-        html += "</div>";
-        $("#user-" + i.toString()).html(html);
-
-        $('#user-'+i.toString()).draggable({
-          cancel: "a.ui-icon",
-          rever: "invalid",
-          containment: 'document',
-          helper: "clone",
-          cursor: "grabbing",
-          appendTo: 'body',
-          stack: "#droppable-users-3"
-        });
+        add_available_user(id, i);
       });
     });
   }
+
+  function add_available_user(id, i){
+    var html = "<div class='user-box'>";
+    html += "<p>"+users_info[id].name+"</p>";
+    html += "<img src='"+users_info[id].image+"'></img>";
+    html += "</div>";
+    $("#user-" + i.toString()).html(html);
+    $('#user-'+i.toString()).draggable({
+      cancel: "a.ui-icon",
+      rever: "invalid",
+      containment: 'document',
+      helper: "clone",
+      cursor: "grabbing",
+      appendTo: 'body',
+      stack: "#droppable-users-3"
+    });
+  }
+
+  function print_collection_in_list(i, name){
+      id = "collection2-"+i.toString();
+      $("#col-list-2").append('<li id="'+id+'">'+name+'</li>');
+      $('#'+id).click(function(e){
+        $('#modify_collection').remove();
+
+        actual_collection_id = $(this).context.id;
+        prev_name = $("#description-2 > div > h4").html().split("<")[0];
+        show_collection_page2($(this).html());
+      })
+}
+
 
   function save_data(){
     $("#result-4").html("");
@@ -570,7 +587,7 @@ $(document).ready(function() {
       var git_file = $("#file-4").val() + ".json";
       var data = {
         "collections": collections,
-        "users_info": users_info,
+         "users_info": users_info,
         "parking_users": parking_users
       }
       data = JSON.stringify(data);
@@ -614,45 +631,60 @@ $(document).ready(function() {
         data = JSON.parse(data);
 
         collections = data.collections;
+        collection_counter = Object.keys(collections).length;
         users_info = data.users_info;
         parking_users = data.parking_users;
 
-        $("#result-4").html("<h3>Mostrando diccionario collections:</h3>");
+        var div_c = document.createElement("div");
+        div_c.id = "collections-page-4";
+        $("#result-4").append(div_c);
+        $("#collections-page-4").html("<h3 class='title'>Colecciones</h3>");
+        var j = 0;
         $.each(collections, function(key, value){
-          $("#result-4").append("<p>" + key + ": <ul>");
+          print_collection_in_list(j, key)
+          var html = "<p>" + key + ": <ul>";
           for (var i=0; i<value.length; i++){
-            $("#result-4").append(value[i]);
+            name = value[i].split(">")[1].split("<")[0];
+            html += "<li>" + name + "</li>";
           }
-          $("#result-4").append("</ul></p>");
+          $("#collections-page-4").append( html + "</ul></p>");
+          j++;
+        })
+        
+
+        var div_u = document.createElement("div");
+        div_u.id = "users-page-4";
+        $("#result-4").append(div_u);
+        $("#users-page-4").html("<h3 class='title'>Usuarios disponibles</h3>");
+        var i = 0;
+        $.each(users_info, function(key, value){
+          $("#start_websocket").hide();
+          add_available_user(key, i);
+          $("#users-page-4").append("<p>" + key + ":  " + value.name + "<img src='" + value.image + "'></img></p>");
+          i++;
         })
 
 
-        $("#result-4").append("<h3>Mostrando array users_info:</h3>");
-        $("#result-4").append("<p>USUARIOS: <ul>");
-        for(var i=0; i<users_info.length; i++){
-          $("#result-4").append("<li>" + users_info[i].name + "<img src='"+users_info[i].image+"'></img>");
-        }
-        $("#result-4").append("</ul></p>");
-
-        $("#result-4").append("<h3>Mostrando diccionario parking_users:</h3>");
+        var div_p = document.createElement("div");
+        div_p.id = "parking-users-page-4";
+        $("#result-4").append(div_p);
+        $("#parking-users-page-4").html("<h3 class='title'>Usuarios de instalaciones:</h3>");
         $.each(parking_users, function(key, value){
           if (value.length > 0){
-            $("#result-4").append("<p>" + key + ": <ul>");
+            var html = "<p>Parking_id = " + key + ": <ul>";
             for (var i=0; i<value.length; i++){
-              $("#result-4").append("<li>" + value[i] + "</li>");
+              html += "<li>" + value[i] + "</li>";
             }
-            $("#result-4").append("</ul></p>");
+            $("#parking-users-page-4").append(html + "</ul></p>");
           }
         })
-        $("#result-4").append("<h3>FIN DEL FICHERO</h3>");
+        var i = -1;
+        load_parking_users(i); //para que cargue sea cual sea el anterior.
       });
+      
     });
   }
 });
 
 
 
-//collections = data.collections;
-//users_info = data.users_info;
-//parking_users = data.parking_users;
-/**/

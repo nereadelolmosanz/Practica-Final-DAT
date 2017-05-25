@@ -3200,6 +3200,25 @@
 }
 
 
+#result-4{
+        text-align: center;
+        color: #0a5739;
+        font-weight: 500;
+}
+
+#result-4 p{
+        font-size: 1.1em;
+}
+
+#result-4 ul li {
+        font-size: 0.9em;
+}
+
+#collections-page-4 p,
+#parking-users-page-4 p{
+        background-color: #F68E97;
+}
+
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
